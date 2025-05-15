@@ -10,6 +10,7 @@ func TestMain(t *testing.T) {
 		{31, "31"},
 		{6, "Fizz"},
 		{10, "Buzz"},
+		{30, "FizzBuzz"},
 	}
 
 	for _, testParameters := range tests {
