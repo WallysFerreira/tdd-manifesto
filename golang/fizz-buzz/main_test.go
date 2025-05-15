@@ -3,23 +3,19 @@ package main
 import "testing"
 
 func TestMain(t *testing.T) {
-	t.Run("Should return number as string", func(t *testing.T) {
-		expectedString := "31"
+	tests := []struct {
+		number   int
+		expected string
+	}{
+		{31, "31"},
+		{30, "Fizz"},
+	}
 
-		actualString := fizzBuzz(31)
+	for _, testParameters := range tests {
+		actualString := fizzBuzz(testParameters.number)
 
-		if actualString != expectedString {
-			t.Errorf("got %q wanted %q", actualString, expectedString)
+		if actualString != testParameters.expected {
+			t.Errorf("got %q wanted %q", actualString, testParameters.expected)
 		}
-	})
-
-	t.Run("Should return 'Fizz' when number is multiple of three", func(t *testing.T) {
-		expectedString := "Fizz"
-
-		actualString := fizzBuzz(30)
-
-		if actualString != expectedString {
-			t.Errorf("got %q wanted %q", actualString, expectedString)
-		}
-	})
+	}
 }
