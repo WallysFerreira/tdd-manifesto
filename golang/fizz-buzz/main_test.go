@@ -8,7 +8,8 @@ func TestMain(t *testing.T) {
 		expected string
 	}{
 		{31, "31"},
-		{30, "Fizz"},
+		{6, "Fizz"},
+		{10, "Buzz"},
 	}
 
 	for _, testParameters := range tests {
