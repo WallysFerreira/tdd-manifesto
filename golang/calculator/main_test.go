@@ -37,4 +37,15 @@ func TestMain(t *testing.T) {
 			t.Errorf("got %d wanted %d", actual, expected)
 		}
 	})
+
+	t.Run("Should accept newlines as separator", func(t *testing.T) {
+		input := "10,30\n49,20"
+		expected := 109
+
+		actual := add(input)
+
+		if actual != expected {
+			t.Errorf("got %d wanted %d", actual, expected)
+		}
+	})
 }

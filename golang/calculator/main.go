@@ -1,8 +1,8 @@
 package main
 
 import (
+	"regexp"
 	"strconv"
-	"strings"
 )
 
 func add(numbersString string) int {
@@ -14,7 +14,8 @@ func add(numbersString string) int {
 }
 
 func doAdd(numbersString string) int {
-	numbers := strings.Split(numbersString, ",")
+	regex := regexp.MustCompile(`[,\n]`)
+	numbers := regex.Split(numbersString, -1)
 
 	if len(numbers) == 1 {
 		number, _ := strconv.Atoi(numbers[0])
