@@ -3,7 +3,10 @@ package main
 import (
 	"regexp"
 	"strconv"
+	"strings"
 )
+
+var allowedSeparators = [2]string{",", "\\n"}
 
 func add(numbersString string) int {
 	if numbersString == "" {
@@ -14,7 +17,7 @@ func add(numbersString string) int {
 }
 
 func doAdd(numbersString string) int {
-	regex := regexp.MustCompile(`[,\n]`)
+	regex := regexp.MustCompile(makeSeparatorsRegex())
 	numbers := regex.Split(numbersString, -1)
 
 	if len(numbers) == 1 {
@@ -34,4 +37,8 @@ func sum(numbers []string) int {
 	}
 
 	return total
+}
+
+func makeSeparatorsRegex() string {
+	return `[` + strings.Join(allowedSeparators[:], "") + `]`
 }
