@@ -26,4 +26,15 @@ func TestMain(t *testing.T) {
 			}
 		})
 	}
+
+	t.Run("Should work for multiple numbers", func(t *testing.T) {
+		input := "10,30,49"
+		expected := 89
+
+		actual := add(input)
+
+		if actual != expected {
+			t.Errorf("got %d wanted %d", actual, expected)
+		}
+	})
 }
