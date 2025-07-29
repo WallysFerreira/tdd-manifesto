@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"regexp"
 	"strconv"
 	"strings"
@@ -8,12 +9,30 @@ import (
 
 var allowedSeparators = [2]string{",", "\\n"}
 
-func add(numbersString string) int {
+func add(numbersString string) (int, error) {
 	if numbersString == "" {
-		return 0
+		return 0, nil
+	} else if lastCharacterIsSeparator(numbersString) {
+		return 0, errors.New("separator at the end of String not allowed")
 	}
 
-	return doAdd(numbersString)
+	return doAdd(numbersString), nil
+}
+
+func lastCharacterIsSeparator(numbersString string) bool {
+	lastCharacter := string(numbersString[len(numbersString)-1])
+
+	return anySeparatorMatch(lastCharacter)
+}
+
+func anySeparatorMatch(character string) bool {
+	for _, separator := range allowedSeparators {
+		if character == separator {
+			return true
+		}
+	}
+
+	return false
 }
 
 func doAdd(numbersString string) int {
