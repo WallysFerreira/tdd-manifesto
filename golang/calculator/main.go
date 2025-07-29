@@ -8,6 +8,7 @@ import (
 )
 
 var allowedSeparators = [2]string{",", "\\n"}
+var chosenSeparator string
 
 func add(numbersString string) (int, error) {
 	if numbersString == "" {
@@ -16,7 +17,16 @@ func add(numbersString string) (int, error) {
 		return 0, errors.New("separator at the end of String not allowed")
 	}
 
+	setChosenSeparator(numbersString)
+
 	return doAdd(numbersString), nil
+}
+
+func setChosenSeparator(numbersString string) {
+	if (len(numbersString) > 2 && numbersString[0:2] == "//") && (strings.Contains(numbersString, "\n")) {
+		customSeparator := strings.SplitN(numbersString, "\n", 2)[0][2:]
+		chosenSeparator = customSeparator
+	}
 }
 
 func lastCharacterIsSeparator(numbersString string) bool {
@@ -37,7 +47,7 @@ func anySeparatorMatch(character string) bool {
 
 func doAdd(numbersString string) int {
 	regex := regexp.MustCompile(makeSeparatorsRegex())
-	numbers := regex.Split(numbersString, -1)
+	numbers := getNumbersList(numbersString, regex)
 
 	if len(numbers) == 1 {
 		number, _ := strconv.Atoi(numbers[0])
@@ -45,6 +55,15 @@ func doAdd(numbersString string) int {
 	}
 
 	return sum(numbers)
+}
+
+func getNumbersList(numbersString string, regex *regexp.Regexp) []string {
+	if chosenSeparator != "" {
+		numbersPart := strings.SplitN(numbersString, "\n", 2)[1]
+		return regex.Split(numbersPart, -1)
+	} else {
+		return regex.Split(numbersString, -1)
+	}
 }
 
 func sum(numbers []string) int {
@@ -59,5 +78,9 @@ func sum(numbers []string) int {
 }
 
 func makeSeparatorsRegex() string {
+	if chosenSeparator != "" {
+		return `[` + regexp.QuoteMeta(chosenSeparator) + `]`
+	}
+
 	return `[` + strings.Join(allowedSeparators[:], "") + `]`
 }

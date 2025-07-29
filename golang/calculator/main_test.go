@@ -62,6 +62,42 @@ func TestMain(t *testing.T) {
 		}
 	})
 
+	t.Run("Should use custom ';' separator", func(t *testing.T) {
+		input := "//;\n10;20;30"
+		expected := 60
+
+		actual, err := add(input)
+
+		shouldNotHaveErrors(err, t)
+		if actual != expected {
+			t.Errorf("got %d wanted %d", actual, expected)
+		}
+	})
+
+	t.Run("Should use custom '\\n' separator", func(t *testing.T) {
+		input := "//\\n\n10\\n20\\n30"
+		expected := 60
+
+		actual, err := add(input)
+
+		shouldNotHaveErrors(err, t)
+		if actual != expected {
+			t.Errorf("got %d wanted %d", actual, expected)
+		}
+	})
+
+	t.Run("Should handle custom separator with multiple characters", func(t *testing.T) {
+		input := "//[***]\n1***2***3"
+		expected := 6
+
+		actual, err := add(input)
+
+		shouldNotHaveErrors(err, t)
+		if actual != expected {
+			t.Errorf("got %d wanted %d", actual, expected)
+		}
+	})
+
 }
 
 func shouldNotHaveErrors(err error, t *testing.T) {
