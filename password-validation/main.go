@@ -10,15 +10,25 @@ func validate(password string) ValidationResult {
 		validateSpecialCharacters,
 	}
 
-	accumulatedErrorMessages := []string{}
+	validationChannel := make(chan ValidationResult, len(validators))
 
 	for _, validator := range validators {
-		if result := validator(password); !result.IsValid {
+		go func(v ValidatorFunc) {
+			result := v(password)
+			validationChannel <- result
+		}(validator)
+	}
+
+	accumulatedErrorMessages := []string{}
+
+	for range validators {
+		result := <-validationChannel
+		if !result.IsValid {
 			accumulatedErrorMessages = append(accumulatedErrorMessages, result.Error)
 		}
 	}
 
-	if (len(accumulatedErrorMessages) != 0) {
+	if len(accumulatedErrorMessages) != 0 {
 		return ValidationResult{false, strings.Join(accumulatedErrorMessages, "\n")}
 	}
 

@@ -12,7 +12,7 @@ func TestMain(t *testing.T) {
 		{"Only1Number*", ValidationResult{false, PasswordNeedsMoreNumbers}},
 		{"noc4p1tall3tters#", ValidationResult{false, PasswordNeedsCapitalLetters}},
 		{"N0sp3cialChars", ValidationResult{false, PasswordNeedsSpecialCharacters}},
-		{"bad", ValidationResult{false, PasswordTooShort + "\n" + PasswordNeedsMoreNumbers + "\n" + PasswordNeedsCapitalLetters + "\n" + PasswordNeedsSpecialCharacters}},
+		{"bad", ValidationResult{false, PasswordNeedsSpecialCharacters + "\n" + PasswordTooShort + "\n" + PasswordNeedsMoreNumbers + "\n" + PasswordNeedsCapitalLetters}},
 	}
 
 	for _, parameters := range tests {
