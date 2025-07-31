@@ -10,6 +10,7 @@ func TestMain(t *testing.T) {
 		{"moreThan8Characters2", ValidationResult{true, ""}},
 		{"L3ss2", ValidationResult{false, PasswordTooShort}},
 		{"Only1Number", ValidationResult{false, PasswordNeedsMoreNumbers}},
+		{"bad", ValidationResult{false, PasswordTooShort + "\n" + PasswordNeedsMoreNumbers}},
 	}
 
 	for _, parameters := range tests {
