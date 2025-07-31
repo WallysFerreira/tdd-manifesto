@@ -1,9 +1,13 @@
 package main
 
 func validate(password string) ValidationResult {
-	if len(password) < 8 {
-		return ValidationResult{false, "Password must be at least 8 characters"}
+	if failsLengthCheck(password) {
+		return ValidationResult{false, PasswordTooShort}
 	}
 
 	return ValidationResult{true, ""}
+}
+
+func failsLengthCheck(password string) bool {
+	return len(password) < 8
 }

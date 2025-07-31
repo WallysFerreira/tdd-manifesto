@@ -8,7 +8,7 @@ func TestMain(t *testing.T) {
 		expected ValidationResult
 	}{
 		{"moreThan8Characters", ValidationResult{true, ""}},
-		{"L3ss", ValidationResult{false, "Password must be at least 8 characters"}},
+		{"L3ss", ValidationResult{false, PasswordTooShort}},
 	}
 
 	for _, parameters := range tests {
