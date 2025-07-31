@@ -9,5 +9,5 @@ func validateCapitalLetters(password string) ValidationResult {
 		}
 	}
 
-	return ValidationResult{false, PasswordNeedsCapitalLetters}
+	return invalidBecause(PasswordNeedsCapitalLetters)
 }

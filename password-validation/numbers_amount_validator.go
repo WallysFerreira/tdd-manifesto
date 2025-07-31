@@ -4,7 +4,7 @@ import "unicode"
 
 func validateAmountOfNumbers(password string) ValidationResult {
 	if amountOfNumbersIn(password) < 2 {
-		return ValidationResult{false, PasswordNeedsMoreNumbers}
+		return invalidBecause(PasswordNeedsMoreNumbers)
 	}
 
 	return valid()
