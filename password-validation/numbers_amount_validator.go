@@ -7,7 +7,7 @@ func validateAmountOfNumbers(password string) ValidationResult {
 		return ValidationResult{false, PasswordNeedsMoreNumbers}
 	}
 
-	return ValidationResult{true, ""}
+	return valid()
 }
 
 func amountOfNumbersIn(password string) int {

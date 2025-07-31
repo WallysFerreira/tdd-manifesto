@@ -21,5 +21,5 @@ func validate(password string) ValidationResult {
 		return ValidationResult{false, strings.Join(accumulatedErrorMessages, "\n")}
 	}
 
-	return ValidationResult{true, ""}
+	return valid()
 }

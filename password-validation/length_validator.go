@@ -5,5 +5,5 @@ func validateLength(password string) ValidationResult {
 		return ValidationResult{false, PasswordTooShort}
 	}
 
-	return ValidationResult{true, ""}
+	return valid()
 }

@@ -5,4 +5,8 @@ type ValidationResult struct {
 	Error   string
 }
 
+func valid() ValidationResult {
+	return ValidationResult{true, ""}
+}
+
 type ValidatorFunc func(password string) ValidationResult
