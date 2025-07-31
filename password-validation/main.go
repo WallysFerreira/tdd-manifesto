@@ -7,6 +7,7 @@ func validate(password string) ValidationResult {
 		validateLength,
 		validateAmountOfNumbers,
 		validateCapitalLetters,
+		validateSpecialCharacters,
 	}
 
 	accumulatedErrorMessages := []string{}
