@@ -1,20 +1,23 @@
 package main
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 func TestMain(t *testing.T) {
 	parameters := []struct {
 		searchText     string
-		expectedResult string
+		expectedResult []string
 	}{
-		{"", ""},
-		{"a", ""},
+		{"", []string{""}},
+		{"a", []string{""}},
 	}
 
 	for _, parameter := range parameters {
 		actualResult := search(parameter.searchText)
 
-		if actualResult != parameter.expectedResult {
+		if !slices.Equal(actualResult, parameter.expectedResult) {
 			t.Errorf("got %s wanted %s", actualResult, parameter.expectedResult)
 		}
 	}
