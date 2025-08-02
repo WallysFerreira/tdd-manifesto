@@ -13,6 +13,7 @@ func TestMain(t *testing.T) {
 		{"", []string{}},
 		{"a", []string{}},
 		{"Va", []string{"Vancouver", "Valencia"}},
+		{"va", []string{"Vancouver", "Valencia"}},
 	}
 
 	for _, parameter := range parameters {
@@ -21,6 +22,7 @@ func TestMain(t *testing.T) {
 		for _, eachExpectedResult := range parameter.expectedResult {
 			if !slices.Contains(actualResult, eachExpectedResult) {
 				t.Errorf("got %s wanted %s", actualResult, parameter.expectedResult)
+				return
 			}
 		}
 	}

@@ -11,11 +11,15 @@ func search(searchText string) (cityNamesMatched []string) {
 	}
 
 	for _, city := range city.Cities() {
-		regexPattern, _ := regexp.Compile(searchText)
+		regexPattern, _ := regexp.Compile(caseInsensitive(searchText))
 		matches := regexPattern.Match([]byte(city.Name))
 		if matches {
 			cityNamesMatched = append(cityNamesMatched, city.Name)
 		}
 	}
 	return
+}
+
+func caseInsensitive(text string) string {
+	return "(?i)" + text
 }
