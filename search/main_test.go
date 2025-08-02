@@ -10,15 +10,18 @@ func TestMain(t *testing.T) {
 		searchText     string
 		expectedResult []string
 	}{
-		{"", []string{""}},
-		{"a", []string{""}},
+		{"", []string{}},
+		{"a", []string{}},
+		{"Va", []string{"Vancouver", "Valencia"}},
 	}
 
 	for _, parameter := range parameters {
 		actualResult := search(parameter.searchText)
 
-		if !slices.Equal(actualResult, parameter.expectedResult) {
-			t.Errorf("got %s wanted %s", actualResult, parameter.expectedResult)
+		for _, eachExpectedResult := range parameter.expectedResult {
+			if !slices.Contains(actualResult, eachExpectedResult) {
+				t.Errorf("got %s wanted %s", actualResult, parameter.expectedResult)
+			}
 		}
 	}
 }

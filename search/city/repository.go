@@ -5,7 +5,7 @@ var citiesNames = []string{
 	"Vienna", "Sydney", "New York City", "London", "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul",
 }
 
-func cities() (finalList []City) {
+func Cities() (finalList []City) {
 	finalList = []City{}
 
 	for _, cityName := range citiesNames {

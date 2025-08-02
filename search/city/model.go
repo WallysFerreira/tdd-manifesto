@@ -1,5 +1,5 @@
 package city
 
 type City struct {
-	name string
+	Name string
 }
