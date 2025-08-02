@@ -6,6 +6,10 @@ import (
 )
 
 func search(searchText string) (cityNamesMatched []string) {
+	if searchText == "*" {
+		return allCitiesNames()
+	}
+
 	if len(searchText) < 2 {
 		return
 	}
@@ -22,4 +26,12 @@ func search(searchText string) (cityNamesMatched []string) {
 
 func caseInsensitive(text string) string {
 	return "(?i)" + text
+}
+
+func allCitiesNames() (names []string) {
+	for _, city := range city.Cities() {
+		names = append(names, city.Name)
+	}
+
+	return
 }

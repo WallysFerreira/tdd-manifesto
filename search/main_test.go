@@ -15,6 +15,8 @@ func TestMain(t *testing.T) {
 		{"Va", []string{"Vancouver", "Valencia"}},
 		{"va", []string{"Vancouver", "Valencia"}},
 		{"ape", []string{"Budapest"}},
+		{"*", []string{	"Paris", "Budapest", "Skopje", "Rotterdam", "Valencia", "Vancouver", "Amsterdam", "Vienna",
+		"Sydney", "New York City", "London", "Bangkok", "Hong Kong", "Dubai", "Rome", "Istanbul"}},
 	}
 
 	for _, parameter := range parameters {
