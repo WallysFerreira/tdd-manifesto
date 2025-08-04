@@ -1,2 +1,2 @@
 # tdd-manifesto-go
-Remembering Golang exercises from [the TDD manifesto website](https://tddmanifesto.com/exercises/)
+Remembering Golang with exercises from [the TDD manifesto website](https://tddmanifesto.com/exercises/)
