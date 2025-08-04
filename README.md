@@ -1,2 +1,2 @@
 # tdd-manifesto
-Remembering Golang and Rust with TDD exercises
+Remembering Golang exercises from [the TDD manifesto website](https://tddmanifesto.com/exercises/)
